@@ -6032,24 +6032,27 @@
             "path": "templates.winter-warm",
             "category_id": "989286562",
             "primary_color": "",
-            "thumbnail": "templates-thumbs/winter-warm.jpg",
-            "is_default": true
+            "thumbnail": "https://cdn.assets.salla.network/previews/ne0cupl3l7p3/assets/faf29c6aca3c9f5fd20097798bd79d6b3f4e6fd69f6604dbcec2bcc68c72b250/templates-thumbs/winter-warm.jpg",
+            "is_default": true,
+            "public_preview_url": "https://salla.design/preview/s/ne0cupl3l7p3/winter-warm"
         },
         {
             "id": "5b60f8c2-13e9-46a3-97e2-d4f174b0f5be",
             "path": "templates.night-luxe",
             "category_id": "989286562",
             "primary_color": "",
-            "thumbnail": "templates-thumbs/night-luxe.jpg",
-            "is_default": false
+            "thumbnail": "https://cdn.assets.salla.network/previews/ne0cupl3l7p3/assets/f4b730310676d7feef16c353cd5d5ea34ee28db8dd18c42ca5601f9d968d213e/templates-thumbs/night-luxe.jpg",
+            "is_default": false,
+            "public_preview_url": "https://salla.design/preview/s/ne0cupl3l7p3/night-luxe"
         },
         {
             "id": "0629bf15-1bfd-426a-82b6-36283a7c01f8",
             "path": "templates.gift-season",
             "category_id": "989286562",
             "primary_color": "",
-            "thumbnail": "templates-thumbs/gift-season.jpg",
-            "is_default": false
+            "thumbnail": "https://cdn.assets.salla.network/previews/ne0cupl3l7p3/assets/bb2ee7343d2621cb7ef0d91522dcdfb95bca5a5cf53c1785d6ebd28c4b437276/templates-thumbs/gift-season.jpg",
+            "is_default": false,
+            "public_preview_url": "https://salla.design/preview/s/ne0cupl3l7p3/gift-season"
         }
     ]
 }
