@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <rect width="1024" height="1024" fill="#8a5a3b"/>
+  <circle cx="512" cy="512" r="380" fill="#9a6846"/>
+  <!-- A crescent moon over a stack of folded quilts -->
+  <circle cx="690" cy="262" r="80" fill="#f5ece4"/>
+  <circle cx="728" cy="236" r="70" fill="#9a6846"/>
+  <rect x="250" y="600" width="524" height="130" rx="54" fill="#f5ece4"/>
+  <rect x="280" y="480" width="464" height="122" rx="52" fill="#e3c9b1"/>
+  <rect x="310" y="368" width="404" height="114" rx="48" fill="#f5ece4"/>
+  <g stroke="#8a5a3b" stroke-width="14" stroke-linecap="round" stroke-dasharray="2 34" fill="none">
+    <path d="M340 665h344"/><path d="M366 541h292"/><path d="M392 425h240"/>
+  </g>
+</svg>
