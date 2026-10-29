@@ -1,14 +1,14 @@
 {
     "name": {
-        "ar": "مفرشك",
-        "en": "Mafrashik"
+        "ar": "مفارش",
+        "en": "blankets"
     },
     "description": {
-        "ar": "صفحة هبوط للمفارش والبطانيات بدليل الدفء والمقاس وبناء السرير",
-        "en": "A bedding landing page with a warmth guide, a size guide and a build-your-bed set"
+        "ar": null,
+        "en": null
     },
     "author_email": "ahmedhelmy2722@gmail.com",
-    "support_url": "https://badeehah.com",
+    "support_url": null,
     "repository": "https://github.com/ahmedhelm-y/tw-blankets",
     "features": [
         "landing-page-templates"
