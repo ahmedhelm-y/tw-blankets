@@ -1,7 +1,7 @@
 import { html as s, nothing as l } from "lit";
 import { state as u } from "lit/decorators.js";
-import { g as y, r as d, t as m } from "./styles-CLr0WKdM.js";
-import { M as w } from "./section-DQASqLF9.js";
+import { g as y, r as d, t as m } from "./styles-1hlUxruQ.js";
+import { M as w } from "./section-DJ0rAaDV.js";
 const g = 0.2;
 function $(n) {
   const e = n.map(Number).filter((r) => Number.isInteger(r) && r >= 1 && r <= 5), t = [5, 4, 3, 2, 1].map((r) => e.filter((i) => i === r).length);
@@ -337,6 +337,7 @@ class f extends w {
     return this.frame(s`${t}
       ${e.length ? this.renderFilters(e) : l}
       ${e.length ? a.length ? s`<ul class="mf-rv__grid">${a.map(([r, i]) => this.renderCard(r, i))}</ul>` : s`<p class="mf-rv__none">${m({ ar: "لا توجد تقييمات عن هذا الموضوع بعد", en: "No reviews on this topic yet" })}</p>` : l}
+      ${this.renderCta()}
       ${this.photo ? s`<dialog class="mf-rv__dialog" @close=${() => this.photo = ""} @click=${(r) => {
       r.target === r.currentTarget && this.closePhoto();
     }}>

@@ -1,6 +1,6 @@
 import { nothing as m, html as t } from "lit";
-import { g as n, r as i, i as f, t as l } from "./styles-CLr0WKdM.js";
-import { M as o } from "./section-DQASqLF9.js";
+import { g as n, r as i, i as f, t as l } from "./styles-1hlUxruQ.js";
+import { M as o } from "./section-DJ0rAaDV.js";
 const d = `
 .mf-fq__list { display: grid; gap: .5rem; max-width: 52rem; margin-inline: auto; }
 .mf-fq__list details { border-radius: 1rem; background: var(--mf-card); }

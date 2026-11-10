@@ -1,7 +1,7 @@
 import { svg as e, nothing as n, html as r } from "lit";
 import { p as C } from "./bedding-BSPlFaov.js";
-import { a as D, g as v, u as w, r as o, i as H, t as m } from "./styles-CLr0WKdM.js";
-import { M as S } from "./section-DQASqLF9.js";
+import { a as D, g as v, u as w, r as o, i as H, t as m } from "./styles-1hlUxruQ.js";
+import { M as S } from "./section-DJ0rAaDV.js";
 const z = (a) => e`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"
   stroke-linejoin="round" aria-hidden="true">${a}</svg>`, p = e`<path d="M6 16h36l-4 22H10z" /><path d="M6 16c3 3 6 3 9 0s6-3 9 0 6 3 9 0 6-3 9 0" />`, d = e`<path d="M8 8l32 32M40 8L8 40" />`, M = e`<path d="M8 34h32l-3-12c-1-4-4-6-8-6H18l-3 6" /><path d="M8 34l4-12h24" />`, g = {
   comforter: { ar: "لحاف", en: "Comforter", icon: e`<rect x="6" y="12" width="36" height="26" rx="4" /><path d="M6 21h36M6 30h36M18 12v26M30 12v26" />` },

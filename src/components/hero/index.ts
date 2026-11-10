@@ -5,6 +5,7 @@ import { resolveText, t, unwrapValue } from "../../utils/config";
 import { DealSection, loadProducts, productIds } from "../../utils/deals";
 import { fetchProduct, isLandingPage, money } from "../../utils/landing";
 import { productIdFrom } from "../../utils/section";
+import { applyPageTheme, clearPageTheme } from "../../utils/theme";
 
 const css = `
 .mf-hero { position: relative; padding: 0; overflow: hidden; }
@@ -102,6 +103,13 @@ export default class Hero extends DealSection {
   disconnectedCallback() {
     super.disconnectedCallback();
     this.media?.removeEventListener?.("change", this.onMedia);
+    clearPageTheme();
+  }
+
+  // The brand color and page mode are page-wide; the hero's own colors stay on the hero
+  protected willUpdate() {
+    const cfg = this.cfg();
+    applyPageTheme({ brand_color: cfg.brand_color, default_mode: cfg.default_mode });
   }
 
   private onMedia = (e: MediaQueryListEvent) => {

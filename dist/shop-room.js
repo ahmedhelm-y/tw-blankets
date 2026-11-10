@@ -1,13 +1,12 @@
 import { nothing as _, html as n } from "lit";
 import { state as p } from "lit/decorators.js";
 import { unsafeHTML as b } from "lit/directives/unsafe-html.js";
-import { e as w, i as $, t as k, n as S, o as A } from "./drawer-CKC4Ya7w.js";
-import { b as q } from "./buy-ycNLmR2K.js";
-import { g as C, f as I, i as v, a as P, t as l, r as y, m as x } from "./styles-CLr0WKdM.js";
-import { D as z } from "./deals-C4JoRaDK.js";
+import { e as w, i as $, t as k, n as S, o as A } from "./drawer-BjIBkXEF.js";
+import { g as q, f as C, i as v, a as I, t as l, b as P, r as y, m as x } from "./styles-1hlUxruQ.js";
+import { D as z } from "./deals-CuqjvncO.js";
 var j = Object.defineProperty, f = (c, s, i, a) => {
-  for (var t = void 0, e = c.length - 1, r; e >= 0; e--)
-    (r = c[e]) && (t = r(s, i, t) || t);
+  for (var t = void 0, r = c.length - 1, e; r >= 0; r--)
+    (e = c[r]) && (t = e(s, i, t) || t);
   return t && j(s, i, t), t;
 };
 const D = `
@@ -49,9 +48,9 @@ class d extends z {
   }
   async connectedCallback() {
     super.connectedCallback(), w();
-    const s = C(this.cfg().spots, "spots").slice(0, 6), i = await Promise.all(s.map(async (a) => {
-      const t = Array.isArray(a.product) ? a.product[0] : a.product, e = t && typeof t == "object" ? t.value ?? t.id : t, r = e ? await I(String(e)) : null, o = (m) => Math.min(Math.max(Number(m) || 50, 3), 97);
-      return r && $(r) ? { product: r, x: o(a.x), y: o(a.y) } : null;
+    const s = q(this.cfg().spots, "spots").slice(0, 6), i = await Promise.all(s.map(async (a) => {
+      const t = Array.isArray(a.product) ? a.product[0] : a.product, r = t && typeof t == "object" ? t.value ?? t.id : t, e = r ? await C(String(r)) : null, o = (m) => Math.min(Math.max(Number(m) || 50, 3), 97);
+      return e && $(e) ? { product: e, x: o(a.x), y: o(a.y) } : null;
     }));
     this.spots = i.filter(Boolean), this.loaded = !0;
   }
@@ -62,31 +61,31 @@ class d extends z {
   /** Every piece of the look in one go; a piece still missing a choice gets its picker marked instead. */
   async addAll() {
     var a;
-    const s = this.spots.map((t) => ({ product: t.product, selected: !0, quantity: 1, options: this.picks[String(t.product.id)] || {} })), i = s.findIndex((t) => (t.product.options || []).some((e) => (e == null ? void 0 : e.required) && (e.details || []).length && !t.options[String(e.id)]));
+    const s = this.spots.map((t) => ({ product: t.product, selected: !0, quantity: 1, options: this.picks[String(t.product.id)] || {} })), i = s.findIndex((t) => (t.product.options || []).some((r) => (r == null ? void 0 : r.required) && (r.details || []).length && !t.options[String(r.id)]));
     if (i >= 0) {
-      const t = s[i].product, e = (t.options || []).filter((r) => (r == null ? void 0 : r.required) && (r.details || []).length && !s[i].options[String(r.id)]).map((r) => Number(r.id));
-      this.invalid = { ...this.invalid, [String(t.id)]: e }, this.active = i, await this.updateComplete, (a = this.querySelector(`[data-spot="${i}"] select[aria-invalid="true"]`)) == null || a.focus();
+      const t = s[i].product, r = (t.options || []).filter((e) => (e == null ? void 0 : e.required) && (e.details || []).length && !s[i].options[String(e.id)]).map((e) => Number(e.id));
+      this.invalid = { ...this.invalid, [String(t.id)]: r }, this.active = i, await this.updateComplete, (a = this.querySelector(`[data-spot="${i}"] select[aria-invalid="true"]`)) == null || a.focus();
       return;
     }
-    v() && (await this.press({ items: k(s), stay: !0 }), this.error) || (await S(s.map((t) => ({ product: t.product, options: t.options, quantity: 1 })), P()), A());
+    v() && (await this.press({ items: k(s), stay: !0 }), this.error) || (await S(s.map((t) => ({ product: t.product, options: t.options, quantity: 1 })), I()), A());
   }
   render() {
     const s = this.cfg(), i = String(s.image || "");
     if (!i || !this.spots.length)
       return !this.loaded || v() ? _ : this.frame(n`<p class="mf-empty">${l({ ar: "أضف صورة الغرفة والنقط ومنتج كل نقطة من إعدادات هذا القسم", en: "Add the room photo and a product for each spot in this section's settings" })}</p>`);
-    const a = this.spots.reduce((e, r) => e + (Number(r.product.sale_price || r.product.price) || 0), 0), t = q({ items: [{ id: "x", quantity: 1 }] }) !== "none";
+    const a = this.spots.reduce((r, e) => r + (Number(e.product.sale_price || e.product.price) || 0), 0), t = P({ items: [{ id: "x", quantity: 1 }] }) !== "none";
     return this.frame(n`<div class="mf-sr__wrap">
       <div class="mf-sr__photo">
         <img src=${i} alt=${y(s.image_alt)} loading="lazy" />
-        ${this.spots.map((e, r) => n`<button type="button" class="mf-sr__dot" style=${`left:${e.x}%;top:${e.y}%`} aria-pressed=${this.active === r ? "true" : "false"}
-          aria-label=${e.product.name} @click=${() => this.focusItem(r)}>${r + 1}</button>`)}
+        ${this.spots.map((r, e) => n`<button type="button" class="mf-sr__dot" style=${`left:${r.x}%;top:${r.y}%`} aria-pressed=${this.active === e ? "true" : "false"}
+          aria-label=${r.product.name} @click=${() => this.focusItem(e)}>${e + 1}</button>`)}
       </div>
       <div>
-        <ol class="mf-sr__list">${this.spots.map((e, r) => {
+        <ol class="mf-sr__list">${this.spots.map((r, e) => {
       var u, h, g;
-      const o = e.product, m = ((h = (u = o.images) == null ? void 0 : u[0]) == null ? void 0 : h.url) || ((g = o.image) == null ? void 0 : g.url);
-      return n`<li class=${`mf-sr__item${this.active === r ? " is-on" : ""}`} data-spot=${r} data-card=${String(o.id)}>
-            <span class="mf-sr__num">${r + 1}</span>
+      const o = r.product, m = ((h = (u = o.images) == null ? void 0 : u[0]) == null ? void 0 : h.url) || ((g = o.image) == null ? void 0 : g.url);
+      return n`<li class=${`mf-sr__item${this.active === e ? " is-on" : ""}`} data-spot=${e} data-card=${String(o.id)}>
+            <span class="mf-sr__num">${e + 1}</span>
             ${m ? n`<img src=${m} alt="" loading="lazy" />` : n`<span></span>`}
             <span class="mf-sr__info"><span class="mf-sr__name">${o.name}</span><span class="mf-sr__price">${b(x(Number(o.sale_price || o.price) || 0))}</span></span>
             <div class="mf-sr__act">${this.renderPickers(o)}${this.renderBuy(o, l({ ar: "أضف", en: "Add" }))}</div>

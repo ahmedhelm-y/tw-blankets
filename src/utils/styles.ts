@@ -33,8 +33,8 @@ const chain = (prefix: "l" | "d") =>
 export const baseCss = `
 .mf-host { display: block; width: 100%; min-width: 0; container-type: inline-size; }
 [data-mf-section] { scroll-margin-top: var(--mf-hd-h, 0px); }
-/* The last block keeps clear of the sticky buy bar while it shows */
-.mf-ft { padding-bottom: calc(1.25rem + var(--mf-sb-h, 0px)) !important; }
+/* The page's end keeps clear of the sticky buy bar while it shows */
+.mf-host:has(> .mf-sb:not(.mf-sb--inline)) { height: var(--mf-sb-h, 0px); }
 .component-card:has(> .mf-host:not(:empty)) { min-height: 0; }
 .mf-block { ${chain("l")}
   display: block; width: 100%; box-sizing: border-box; font-family: var(--font-main, inherit);
@@ -61,6 +61,8 @@ html.mf-mode-ready .mf-block { transition: background-color .3s ease, color .3s 
 .mf-btn:focus-visible { outline: 2px solid var(--mf-accent-ink); outline-offset: 3px; }
 .mf-btn[disabled], .mf-btn[aria-busy="true"] { opacity: .6; cursor: progress; transform: none; }
 .mf-empty { padding: 2rem; border: 1px dashed color-mix(in srgb, var(--mf-text) 35%, transparent); border-radius: 1rem; text-align: center; }
+.mf-cta { display: flex; justify-content: center; margin-top: 2rem; }
+.mf-cta .mf-btn { min-width: min(100%, 16rem); }
 .mf-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .mf-error { margin-top: .5rem; color: #b42318; font-size: .875rem; }
 .mf-block.mf-dark .mf-error, html.mf-mode-dark .mf-auto .mf-error { color: #fda29b; }

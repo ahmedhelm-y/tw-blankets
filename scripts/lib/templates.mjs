@@ -5,8 +5,6 @@ import { L, opt } from "./fields.mjs";
 
 const ASSETS = "https://raw.githubusercontent.com/ahmedhelm-y/tw-blankets/store-assets/";
 const img = (name) => `${ASSETS}img/${name}.jpg`;
-// Sample logo for the template previews; the merchant swaps it for their own, or clears it to use the store logo
-const logo = { logo: `${ASSETS}logo/logo.png`, logo_dark: `${ASSETS}logo/logo-dark.png` };
 const sel = (value, label) => [opt(value, label)];
 const product = (id, name) => [{ label: name, value: id, key: String(id) }];
 const many = (...list) => list.flatMap(([id, name]) => product(id, name));
@@ -14,8 +12,7 @@ const rows = (prefix, list) => list.map((row) => Object.fromEntries(Object.entri
 
 const MAIN = product(45289979, "فستان");
 
-export const ORDER = ["page-header", "hero", "trust-strip", "warmth-guide", "size-guide", "set-details", "fabric-compare", "build-bed",
-  "bed-quiz", "shop-room", "gift-bar", "reviews", "faq", "page-footer", "sticky-buy"];
+// Each template has one goal, buying the set, and only the sections that lead to it; the rest stay in the editor
 
 const LEVELS = rows("levels", [
   { name: L("خفيف", "Light"), option_value: "", badge: L("", ""), ideal_for: L("للي يحس بالحر بالليل، وللمكيّف", "For warm sleepers and air-conditioned rooms"),
@@ -130,58 +127,69 @@ const common = {
   reviews: { items: REVIEWS, summary_text: L("أكثر شيء مدحوه: الدفء من غير ثقل، والمقاس المضبوط.", "What they praise most: warmth without weight, and the right size.") },
   faq: { faqs: FAQS },
 };
-const footer = (about) => ({ ...logo, about, show_payments: true });
+const trust = (title, cta) => ({ badges: BADGES, layout: sel("full", "قسم كامل"), title, cta_text: cta });
+// Without the warmth guide on the page, the fabric cards don't link to it
+const FABRICS_ALONE = FABRICS.map((row) => ({ ...row, "fabrics.link_text": L("", ""), "fabrics.link": "" }));
 const hero = (image, extra = {}) => ({ image, image_mobile: image, product: MAIN, addons: many([1769567998, "بلوزة"], [2052836592, "بلوزة"]), ...extra });
 
 export const templates = [
   {
+    // Goal: buy the right comforter for the winter
     name: "winter-warm",
     id: "9b5bd8b6-ad54-484a-a254-73edbb2edf46",
     // مستلزمات المنزل
     category_id: "989286562",
     is_default: true,
-    order: ORDER,
+    order: ["hero", "warmth-guide", "set-details", "size-guide", "trust-strip", "reviews", "faq", "sticky-buy"],
     values: {
       ...common,
-      "page-header": { ...logo, brand_color: "#8a5a3b", default_mode: sel("light", "فاتح"), sticky: true,
-        nav: rows("nav", [{ label: L("درجة الدفء", "Warmth"), target: "warmth" }, { label: L("المقاسات", "Sizes"), target: "size" }, { label: L("ابنِ سريرك", "Build your bed"), target: "bed" }]) },
-      hero: hero(img("hero-blue"), { layout: sel("split", "النص بجانب الصورة") }),
-      "shop-room": { image: img("room-loft"), spots: SPOTS({ x: 46, y: 62 }, { x: 33, y: 47 }, { x: 13, y: 52 }) },
-      "page-footer": footer(L("مفارش ولحافات تدفّيك طول الشتاء", "Bedding that keeps you warm all winter")),
+      hero: hero(img("hero-blue"), { layout: sel("split", "النص بجانب الصورة"), brand_color: "#8a5a3b", default_mode: sel("light", "فاتح") }),
+      "trust-strip": trust(L("تسوّق وانت مطمّن", "Shop with peace of mind"), L("اختار مفرشك", "Choose your set")),
+      reviews: { ...common.reviews, cta_text: L("اختار مفرشك", "Choose your set") },
     },
   },
   {
+    // Goal: buy the luxe set
     name: "night-luxe",
     id: "5b60f8c2-13e9-46a3-97e2-d4f174b0f5be",
     category_id: "989286562",
     is_default: false,
-    order: ["page-header", "hero", "trust-strip", "fabric-compare", "warmth-guide", "shop-room", "set-details", "build-bed", "size-guide",
-      "reviews", "gift-bar", "bed-quiz", "faq", "page-footer", "sticky-buy"],
+    order: ["hero", "fabric-compare", "shop-room", "set-details", "trust-strip", "reviews", "faq", "sticky-buy"],
     values: {
       ...common,
-      "page-header": { ...logo, brand_color: "#b08d57", default_mode: sel("dark", "داكن"), sticky: true, transparent: true,
-        nav: rows("nav", [{ label: L("الخامات", "Fabrics"), target: "fabrics" }, { label: L("الغرفة", "The room"), target: "room" }, { label: L("الأسئلة", "FAQ"), target: "faq" }]) },
-      hero: hero(img("hero-dark"), { layout: sel("overlay", "النص فوق الصورة"), overlay: 45, badge: L("مجموعة الليل", "The night collection"),
+      hero: hero(img("hero-dark"), { layout: sel("overlay", "النص فوق الصورة"), overlay: 45, badge: L("مجموعة الليل", "The night collection"), brand_color: "#b08d57", default_mode: sel("dark", "داكن"),
         title: L("فخامة الفندق في غرفتك", "Hotel luxury in your own room"), subtitle: L("مخمل وفرو بألوان هادية، لنوم أعمق في ليالي الشتاء", "Velvet and faux fur in calm tones, for deeper winter sleep") }),
+      "fabric-compare": { fabrics: FABRICS_ALONE },
       "shop-room": { image: img("room-brown"), spots: SPOTS({ x: 55, y: 70 }, { x: 52, y: 42 }, { x: 72, y: 45 }) },
-      "page-footer": footer(L("مفارش فاخرة لليالي الشتاء", "Luxury bedding for winter nights")),
+      "trust-strip": trust(L("فخامة توصلك مضمونة", "Luxury, delivered with care"), L("اطلب طقمك", "Order your set")),
+      reviews: { ...common.reviews, cta_text: L("اطلب طقمك", "Order your set") },
     },
   },
   {
+    // Goal: buy the set as a gift
     name: "gift-season",
     id: "0629bf15-1bfd-426a-82b6-36283a7c01f8",
     category_id: "989286562",
     is_default: false,
-    order: ["page-header", "hero", "gift-bar", "bed-quiz", "warmth-guide", "fabric-compare", "build-bed", "set-details", "size-guide",
-      "shop-room", "reviews", "trust-strip", "faq", "page-footer", "sticky-buy"],
+    order: ["hero", "bed-quiz", "gift-bar", "set-details", "trust-strip", "reviews", "faq", "sticky-buy"],
     values: {
       ...common,
-      "page-header": { ...logo, brand_color: "#b5536f", default_mode: sel("light", "فاتح"), sticky: true,
-        nav: rows("nav", [{ label: L("الهدايا", "Gifts"), target: "gifts" }, { label: L("الاختبار", "Quiz"), target: "quiz" }, { label: L("الأسئلة", "FAQ"), target: "faq" }]) },
-      hero: hero(img("hero-pink"), { layout: sel("split", "النص بجانب الصورة"), badge: L("هدية الشتاء", "The winter gift"),
+      hero: hero(img("hero-pink"), { layout: sel("split", "النص بجانب الصورة"), badge: L("هدية الشتاء", "The winter gift"), brand_color: "#b5536f", default_mode: sel("light", "فاتح"),
         title: L("أدفى هدية لمن تحب", "The warmest gift for someone you love"), subtitle: L("مفرش ناعم يوصل مغلف هدية، ومعه هدية منا فوق 300 ريال", "A soft set that arrives gift wrapped, with a gift from us over 300 SAR") }),
-      "shop-room": { image: img("room-yellow"), spots: SPOTS({ x: 50, y: 75 }, { x: 38, y: 48 }, { x: 72, y: 60 }) },
-      "page-footer": footer(L("هدايا الشتاء الدافية", "Warm winter gifts")),
+      "trust-strip": trust(L("هديتك توصل مغلّفة وفي وقتها", "Your gift arrives wrapped and on time"), L("اطلبها هدية", "Order it as a gift")),
+      reviews: { ...common.reviews, cta_text: L("اطلبها هدية", "Order it as a gift") },
     },
   },
 ];
+
+// Every section filled in, for the harness, the store screenshots and the help page. Not a Salla template.
+export const showcase = {
+  name: "showcase",
+  order: ["hero", "warmth-guide", "size-guide", "set-details", "fabric-compare", "build-bed", "bed-quiz", "shop-room", "gift-bar", "trust-strip", "reviews", "faq", "sticky-buy"],
+  values: {
+    ...common,
+    hero: hero(img("hero-blue"), { layout: sel("split", "النص بجانب الصورة"), brand_color: "#8a5a3b", default_mode: sel("light", "فاتح") }),
+    "shop-room": { image: img("room-loft"), spots: SPOTS({ x: 46, y: 62 }, { x: 33, y: 47 }, { x: 13, y: 52 }) },
+    "trust-strip": trust(L("تسوّق وانت مطمّن", "Shop with peace of mind"), L("اختار مفرشك", "Choose your set")),
+  },
+};

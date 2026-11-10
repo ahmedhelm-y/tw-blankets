@@ -46,6 +46,7 @@ export default class TrustStrip extends MfSection {
         ? html`<ol class="mf-ts__steps" style=${`--mf-ts-cols:${Math.min(steps.length, 4)}`}>${steps.map((s) => html`<li class="mf-ts__step">
             ${s.image ? html`<img src=${s.image} alt="" loading="lazy" />` : nothing}
             <h3>${s.title}</h3>${s.text ? html`<p>${s.text}</p>` : nothing}</li>`)}</ol>`
-        : nothing}`, { extraClass: `mf-ts${compact ? " mf-ts--compact" : ""}`, title: !compact });
+        : nothing}
+      ${compact ? nothing : this.renderCta()}`, { extraClass: `mf-ts${compact ? " mf-ts--compact" : ""}`, title: !compact });
   }
 }

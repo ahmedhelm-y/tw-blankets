@@ -311,6 +311,7 @@ export default class Reviews extends MfSection {
           ? html`<ul class="mf-rv__grid">${shown.map(([r, i]) => this.renderCard(r, i))}</ul>`
           : html`<p class="mf-rv__none">${t({ ar: "لا توجد تقييمات عن هذا الموضوع بعد", en: "No reviews on this topic yet" })}</p>`
         : nothing}
+      ${this.renderCta()}
       ${this.photo
         ? html`<dialog class="mf-rv__dialog" @close=${() => (this.photo = "")} @click=${(e: Event) => { if (e.target === e.currentTarget) this.closePhoto(); }}>
             <img src=${this.photo} alt="" /><button type="button" class="mf-rv__close" aria-label=${t({ ar: "إغلاق", en: "Close" })} @click=${() => this.closePhoto()}>×</button>

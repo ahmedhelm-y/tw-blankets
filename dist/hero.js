@@ -1,15 +1,29 @@
-import { nothing as o, html as a } from "lit";
-import { state as p } from "lit/decorators.js";
-import { unsafeHTML as u } from "lit/directives/unsafe-html.js";
-import { f as y, r as f, t as x, m as b, u as v, i as w } from "./styles-CLr0WKdM.js";
-import { D as $, l as k, p as M } from "./deals-C4JoRaDK.js";
-import { p as P } from "./section-DQASqLF9.js";
-var S = Object.defineProperty, _ = (g, e, r, n) => {
-  for (var t = void 0, s = g.length - 1, i; s >= 0; s--)
-    (i = g[s]) && (t = i(e, r, t) || t);
-  return t && S(e, r, t), t;
+import { nothing as s, html as n } from "lit";
+import { state as u } from "lit/decorators.js";
+import { unsafeHTML as v } from "lit/directives/unsafe-html.js";
+import { p as k, u as g, d as $, f as P, r as p, t as w, m as y, i as M } from "./styles-1hlUxruQ.js";
+import { D as S, l as z, p as C } from "./deals-CuqjvncO.js";
+import { p as L } from "./section-DJ0rAaDV.js";
+let x = "", _ = [];
+function j(l) {
+  const e = k(l), r = String(g(l.default_mode) || "light"), a = `${JSON.stringify(e)}|${r}`, t = document.documentElement, i = $(r);
+  if (a === x) return i;
+  x = a;
+  for (const o of _) t.style.removeProperty(o);
+  for (const [o, d] of Object.entries(e)) t.style.setProperty(o, d);
+  return _ = Object.keys(e), t.classList.toggle("mf-mode-dark", i === "dark"), t.classList.toggle("mf-mode-light", i === "light"), i;
+}
+function N() {
+  const l = document.documentElement;
+  for (const e of _) l.style.removeProperty(e);
+  _ = [], x = "", l.classList.remove("mf-mode-dark", "mf-mode-light");
+}
+var O = Object.defineProperty, b = (l, e, r, a) => {
+  for (var t = void 0, i = l.length - 1, o; i >= 0; i--)
+    (o = l[i]) && (t = o(e, r, t) || t);
+  return t && O(e, r, t), t;
 };
-const z = `
+const E = `
 .mf-hero { position: relative; padding: 0; overflow: hidden; }
 .mf-hero > .mf-container { max-width: none; padding: 0; }
 .mf-hero__media { position: relative; overflow: hidden; background: var(--mf-card); }
@@ -54,101 +68,106 @@ const z = `
 @container (min-width: 768px) { .mf-hero--split .mf-hero__wrap { grid-template-columns: 1fr 1fr; gap: 3.5rem; padding-block: 4rem; } }
 @container (max-width: 767px) { .mf-hero--split .mf-hero__media { order: -1; aspect-ratio: 1 / 1; } }
 `;
-class c extends $ {
+class h extends S {
   constructor() {
     super(...arguments), this.styleId = "hero", this.product = null, this.addons = [], this.checked = /* @__PURE__ */ new Set(), this.mobile = !1, this.onMedia = (e) => {
       this.mobile = e.matches;
     };
   }
   styles() {
-    return z;
+    return E;
   }
   async connectedCallback() {
-    var t, s, i, m;
-    super.connectedCallback(), this.media = (t = window.matchMedia) == null ? void 0 : t.call(window, "(max-width: 767px)"), this.mobile = !!((s = this.media) != null && s.matches), (m = (i = this.media) == null ? void 0 : i.addEventListener) == null || m.call(i, "change", this.onMedia);
-    const e = this.cfg(), [r, n] = await Promise.all([y(P(e)), k(M(e.addons, 3))]);
-    this.product = r, this.addons = n, this.checked = new Set(e.addons_checked === !1 ? [] : this.addons.map((h) => String(h.id)));
+    var t, i, o, d;
+    super.connectedCallback(), this.media = (t = window.matchMedia) == null ? void 0 : t.call(window, "(max-width: 767px)"), this.mobile = !!((i = this.media) != null && i.matches), (d = (o = this.media) == null ? void 0 : o.addEventListener) == null || d.call(o, "change", this.onMedia);
+    const e = this.cfg(), [r, a] = await Promise.all([P(L(e)), z(C(e.addons, 3))]);
+    this.product = r, this.addons = a, this.checked = new Set(e.addons_checked === !1 ? [] : this.addons.map((c) => String(c.id)));
   }
   toggle(e) {
     const r = new Set(this.checked);
     r.has(e) ? r.delete(e) : r.add(e), this.checked = r;
   }
   renderAddons() {
-    if (!this.addons.length) return o;
-    const e = f(this.cfg().addons_label);
-    return a`${e ? a`<span class="mf-hero__sub" style="font-weight:700">${e}</span>` : o}
+    if (!this.addons.length) return s;
+    const e = p(this.cfg().addons_label);
+    return n`${e ? n`<span class="mf-hero__sub" style="font-weight:700">${e}</span>` : s}
       <ul class="mf-hero__addons">${this.addons.map((r) => {
-      var s, i, m;
-      const n = String(r.id), t = ((i = (s = r.images) == null ? void 0 : s[0]) == null ? void 0 : i.url) || ((m = r.image) == null ? void 0 : m.url);
-      return a`<li><label class="mf-hero__addon">
-          <input type="checkbox" .checked=${this.checked.has(n)} @change=${() => this.toggle(n)} />
-          ${t ? a`<img src=${t} alt="" loading="lazy" />` : o}
-          <span>${x({ ar: "أضف", en: "Add" })} ${r.name}</span>
-          <b>${u(b(Number(r.sale_price || r.price) || 0))}</b>
+      var i, o, d;
+      const a = String(r.id), t = ((o = (i = r.images) == null ? void 0 : i[0]) == null ? void 0 : o.url) || ((d = r.image) == null ? void 0 : d.url);
+      return n`<li><label class="mf-hero__addon">
+          <input type="checkbox" .checked=${this.checked.has(a)} @change=${() => this.toggle(a)} />
+          ${t ? n`<img src=${t} alt="" loading="lazy" />` : s}
+          <span>${w({ ar: "أضف", en: "Add" })} ${r.name}</span>
+          <b>${v(y(Number(r.sale_price || r.price) || 0))}</b>
         </label>
-        ${this.checked.has(n) ? a`<div class="mf-hero__pickers mf-hero__addon-pick">${this.renderPickers(r)}</div>` : o}</li>`;
+        ${this.checked.has(a) ? n`<div class="mf-hero__pickers mf-hero__addon-pick">${this.renderPickers(r)}</div>` : s}</li>`;
     })}</ul>`;
   }
   disconnectedCallback() {
     var e, r;
-    super.disconnectedCallback(), (r = (e = this.media) == null ? void 0 : e.removeEventListener) == null || r.call(e, "change", this.onMedia);
+    super.disconnectedCallback(), (r = (e = this.media) == null ? void 0 : e.removeEventListener) == null || r.call(e, "change", this.onMedia), N();
+  }
+  // The brand color and page mode are page-wide; the hero's own colors stay on the hero
+  willUpdate() {
+    const e = this.cfg();
+    j({ brand_color: e.brand_color, default_mode: e.default_mode });
   }
   renderMedia() {
-    var i, m, h;
-    const e = this.cfg(), r = (d, l) => String(this.mobile && e[l] || e[d] || "");
-    if (v(e.media) === "video") {
-      const d = r("video_url", "video_url_mobile");
-      if (d) {
-        const l = (i = window.matchMedia) == null ? void 0 : i.call(window, "(prefers-reduced-motion: reduce)").matches;
-        return a`<video .src=${d} poster=${e.poster || o} ?autoplay=${!l} muted loop playsinline preload="metadata"
+    var o, d, c;
+    const e = this.cfg(), r = (m, f) => String(this.mobile && e[f] || e[m] || "");
+    if (g(e.media) === "video") {
+      const m = r("video_url", "video_url_mobile");
+      if (m) {
+        const f = (o = window.matchMedia) == null ? void 0 : o.call(window, "(prefers-reduced-motion: reduce)").matches;
+        return n`<video .src=${m} poster=${e.poster || s} ?autoplay=${!f} muted loop playsinline preload="metadata"
           aria-hidden="true"></video>`;
       }
     }
-    const n = r("image", "image_mobile"), t = ((h = (m = this.product) == null ? void 0 : m.image) == null ? void 0 : h.url) || "", s = n || t;
-    return s ? a`<img src=${s} alt="" fetchpriority="high" />` : o;
+    const a = r("image", "image_mobile"), t = ((c = (d = this.product) == null ? void 0 : d.image) == null ? void 0 : c.url) || "", i = a || t;
+    return i ? n`<img src=${i} alt="" fetchpriority="high" />` : s;
   }
   renderPrice() {
     const e = this.product;
-    if (!e || this.cfg().show_price === !1) return o;
-    const r = Number(e.is_on_sale ? e.sale_price : e.price) || 0, n = Number(e.regular_price) || 0;
-    return a`<span class="mf-hero__price">${u(b(r))}
-      ${e.is_on_sale && n > r ? a`<s>${u(b(n))}</s>` : o}</span>`;
+    if (!e || this.cfg().show_price === !1) return s;
+    const r = Number(e.is_on_sale ? e.sale_price : e.price) || 0, a = Number(e.regular_price) || 0;
+    return n`<span class="mf-hero__price">${v(y(r))}
+      ${e.is_on_sale && a > r ? n`<s>${v(y(a))}</s>` : s}</span>`;
   }
   render() {
-    const e = this.cfg(), r = v(e.layout) === "split" ? "split" : "overlay", n = v(e.content_align) !== "start", t = Math.min(Math.max(Number(e.overlay ?? 35), 0), 80) / 100, s = Math.min(Math.max(Number(e.height) || 85, 50), 100), i = f(e.badge), m = f(e.title), h = f(e.subtitle), d = this.product;
+    const e = this.cfg(), r = g(e.layout) === "split" ? "split" : "overlay", a = g(e.content_align) !== "start", t = Math.min(Math.max(Number(e.overlay ?? 35), 0), 80) / 100, i = Math.min(Math.max(Number(e.height) || 85, 50), 100), o = p(e.badge), d = p(e.title), c = p(e.subtitle), m = this.product;
     return this.frame(
-      a`<div class="mf-hero__wrap" style=${`--mf-hero-veil:${t};--mf-hero-h:${s}vh`}>
+      n`<div class="mf-hero__wrap" style=${`--mf-hero-veil:${t};--mf-hero-h:${i}vh`}>
         <div class="mf-hero__media">${this.renderMedia()}</div>
         <div class="mf-hero__body">
-          ${i ? a`<span class="mf-hero__badge">${i}</span>` : o}
-          ${m ? a`<h1 class="mf-hero__title">${m}</h1>` : o}
-          ${h ? a`<p class="mf-hero__sub">${h}</p>` : o}
-          ${d ? a`<div class="mf-hero__pickers" data-card=${String(d.id)}>${this.renderPickers(d)}</div>` : o}
-          ${d ? this.renderAddons() : o}
+          ${o ? n`<span class="mf-hero__badge">${o}</span>` : s}
+          ${d ? n`<h1 class="mf-hero__title">${d}</h1>` : s}
+          ${c ? n`<p class="mf-hero__sub">${c}</p>` : s}
+          ${m ? n`<div class="mf-hero__pickers" data-card=${String(m.id)}>${this.renderPickers(m)}</div>` : s}
+          ${m ? this.renderAddons() : s}
           <div class="mf-hero__cta">
-            ${d ? this.renderBuy(d, void 0, { extras: this.addons.filter((l) => this.checked.has(String(l.id))) }) : o}
+            ${m ? this.renderBuy(m, void 0, { extras: this.addons.filter((f) => this.checked.has(String(f.id))) }) : s}
             ${this.renderPrice()}
           </div>
-          ${!d && !w() ? a`<p class="mf-hero__sub">${x({ ar: "اختر منتج القسم من الإعدادات ليظهر زر الإضافة للسلة", en: "Pick the section's product to show the add to cart button" })}</p>` : o}
+          ${!m && !M() ? n`<p class="mf-hero__sub">${w({ ar: "اختر منتج القسم من الإعدادات ليظهر زر الإضافة للسلة", en: "Pick the section's product to show the add to cart button" })}</p>` : s}
         </div>
       </div>`,
-      { hero: !0, title: !1, extraClass: `mf-hero mf-hero--${r}${n ? " mf-hero--center" : ""}` }
+      { hero: !0, title: !1, extraClass: `mf-hero mf-hero--${r}${a ? " mf-hero--center" : ""}` }
     );
   }
 }
-_([
-  p()
-], c.prototype, "product");
-_([
-  p()
-], c.prototype, "addons");
-_([
-  p()
-], c.prototype, "checked");
-_([
-  p()
-], c.prototype, "mobile");
-typeof c < "u" && c.registerSallaComponent("salla-hero");
+b([
+  u()
+], h.prototype, "product");
+b([
+  u()
+], h.prototype, "addons");
+b([
+  u()
+], h.prototype, "checked");
+b([
+  u()
+], h.prototype, "mobile");
+typeof h < "u" && h.registerSallaComponent("salla-hero");
 export {
-  c as default
+  h as default
 };

@@ -1,6 +1,6 @@
-import { nothing as s, html as e } from "lit";
-import { g as o, r as m, i as l, t as p, u as d } from "./styles-CLr0WKdM.js";
-import { M as g } from "./section-DQASqLF9.js";
+import { nothing as r, html as e } from "lit";
+import { g as o, r as n, i as l, t as d, u as p } from "./styles-1hlUxruQ.js";
+import { M as g } from "./section-DJ0rAaDV.js";
 const f = `
 .mf-ts__badges { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr)); gap: .75rem; }
 .mf-ts__badge { display: flex; align-items: center; gap: .75rem; padding: .875rem 1rem; border-radius: 1rem; background: var(--mf-card); }
@@ -26,15 +26,16 @@ class c extends g {
     return f;
   }
   render() {
-    const i = this.cfg(), a = o(i.badges, "badges").map((t) => ({ icon: String(t.icon || "sicon-check"), text: m(t.text) })).filter((t) => t.text), r = o(i.steps, "steps").map((t) => ({ title: m(t.title), text: m(t.text), image: String(t.image || "") })).filter((t) => t.title);
-    if (!a.length && !r.length)
-      return l() ? s : this.frame(e`<p class="mf-ts__empty">${p({ ar: "أضف المميزات أو خطوات الصناعة من إعدادات هذا القسم", en: "Add badges or steps in this section's settings" })}</p>`);
-    const n = d(i.layout) === "compact" && !r.length;
+    const i = this.cfg(), a = o(i.badges, "badges").map((t) => ({ icon: String(t.icon || "sicon-check"), text: n(t.text) })).filter((t) => t.text), s = o(i.steps, "steps").map((t) => ({ title: n(t.title), text: n(t.text), image: String(t.image || "") })).filter((t) => t.title);
+    if (!a.length && !s.length)
+      return l() ? r : this.frame(e`<p class="mf-ts__empty">${d({ ar: "أضف المميزات أو خطوات الصناعة من إعدادات هذا القسم", en: "Add badges or steps in this section's settings" })}</p>`);
+    const m = p(i.layout) === "compact" && !s.length;
     return this.frame(e`
-      ${a.length ? e`<div class="mf-ts__badges">${a.map((t) => e`<div class="mf-ts__badge"><i class=${t.icon} aria-hidden="true"></i><span>${t.text}</span></div>`)}</div>` : s}
-      ${r.length ? e`<ol class="mf-ts__steps" style=${`--mf-ts-cols:${Math.min(r.length, 4)}`}>${r.map((t) => e`<li class="mf-ts__step">
-            ${t.image ? e`<img src=${t.image} alt="" loading="lazy" />` : s}
-            <h3>${t.title}</h3>${t.text ? e`<p>${t.text}</p>` : s}</li>`)}</ol>` : s}`, { extraClass: `mf-ts${n ? " mf-ts--compact" : ""}`, title: !n });
+      ${a.length ? e`<div class="mf-ts__badges">${a.map((t) => e`<div class="mf-ts__badge"><i class=${t.icon} aria-hidden="true"></i><span>${t.text}</span></div>`)}</div>` : r}
+      ${s.length ? e`<ol class="mf-ts__steps" style=${`--mf-ts-cols:${Math.min(s.length, 4)}`}>${s.map((t) => e`<li class="mf-ts__step">
+            ${t.image ? e`<img src=${t.image} alt="" loading="lazy" />` : r}
+            <h3>${t.title}</h3>${t.text ? e`<p>${t.text}</p>` : r}</li>`)}</ol>` : r}
+      ${m ? r : this.renderCta()}`, { extraClass: `mf-ts${m ? " mf-ts--compact" : ""}`, title: !m });
   }
 }
 typeof c < "u" && c.registerSallaComponent("salla-trust-strip");
